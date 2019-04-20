@@ -54,7 +54,7 @@ class Signup extends Component {
     return (
       <section>
         <h2> Signup </h2>
-        <form onSubmit={ event => this.UNSAFE_componentWillMount.handleSubmit(event) }>
+        <form onSubmit={ event => this.handleSubmit(event) }>
           <label> Full Name </label>
           <input
             value={this.state.fullName}

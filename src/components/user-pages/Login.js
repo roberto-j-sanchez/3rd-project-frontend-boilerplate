@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class Login extends Component {
         { withCredentials: true } // FORCE axios to send cookies across domains
       )
       .then(response => {
-        // console.log("Login Page", response.data);
+        console.log('Login Page', response.data);
         const { userDoc } = response.data;
         // send "userDoc" to the App.js function that changes "currentUser"
         this.props.onUserChange(userDoc);
@@ -40,6 +41,10 @@ class Login extends Component {
       });
   }
   render() {
+    // check if currentUser exists and if so, redirect to some other page
+    if (this.props.currentUser) {
+      return <Redirect to='/' />;
+    }
     return (
       <section className='LoginPage'>
         <h2>Log In</h2>
